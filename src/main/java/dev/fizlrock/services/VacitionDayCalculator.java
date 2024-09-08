@@ -2,7 +2,7 @@ package dev.fizlrock.services;
 
 import java.time.LocalDate;
 
-public interface WeekendDayCalculator {
+public interface VacitionDayCalculator {
   /**
    * Расчет кол-ва дней отпуска в отрезке двух дат за вычетом праздничных дней
    * входящих в этот отрезок.

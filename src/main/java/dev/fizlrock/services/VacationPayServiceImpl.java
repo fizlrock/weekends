@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WeekendPayServiceImpl implements WeekendPayService {
+public class VacationPayServiceImpl implements VacationPayService {
 
-  private final WeekendDayCalculator weekendDayCalculator;
+  private static final double AVERAGE_DAYS_IN_MONTH = 29.3;
 
-  public WeekendPayServiceImpl(WeekendDayCalculator weekendDayCalculator) {
+  private final VacitionDayCalculator weekendDayCalculator;
+
+  public VacationPayServiceImpl(VacitionDayCalculator weekendDayCalculator) {
     this.weekendDayCalculator = weekendDayCalculator;
   }
 
@@ -21,7 +23,7 @@ public class WeekendPayServiceImpl implements WeekendPayService {
     if (weekendDayCount < 1)
       throw new IllegalArgumentException("Кол-во дней отпуска должно быть больше нуля");
 
-    var dayAnnual = averageMonthlyIncome / 29.3;
+    var dayAnnual = averageMonthlyIncome / AVERAGE_DAYS_IN_MONTH;
     var weekendPay = dayAnnual * weekendDayCount;
     return weekendPay;
   }

@@ -26,7 +26,7 @@ import java.util.Optional;
  * Среднедневной заработок = Доход за расчетный период / Количество отработанных
  * дней *
  */
-public interface WeekendPayService {
+public interface VacationPayService {
   /**
    * @param averageMonthlyIncome - средняя зарплата в месяц за 12 месяцев
    * @param weekendDayCount      - кол-во дней отпуска

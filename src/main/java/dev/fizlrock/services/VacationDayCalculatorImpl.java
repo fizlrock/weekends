@@ -13,12 +13,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
-public class WeekendDayCalculatorImpl implements WeekendDayCalculator {
+public class VacationDayCalculatorImpl implements VacitionDayCalculator {
 
   private final List<LocalDate> holidayDates;
   private final PublicHolidayDateProvider holidayDateProvider;
 
-  public WeekendDayCalculatorImpl(PublicHolidayDateProvider dateProvider) {
+  public VacationDayCalculatorImpl(PublicHolidayDateProvider dateProvider) {
     this.holidayDates = dateProvider.getPublicHolidayDates();
     this.holidayDateProvider = dateProvider;
   }

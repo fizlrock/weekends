@@ -11,16 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.fizlrock.services.WeekendPayService;
+import dev.fizlrock.services.VacationPayService;
 
 @RestController
 public class WeekendPayController implements CalculacteApi {
 
 	@Autowired
-	WeekendPayService service;
+	VacationPayService service;
 
 	@Override
-	public ResponseEntity<Double> getHolidayPay(
+	public ResponseEntity<Double> getVacationPay(
 			@NotNull @Valid Double salary,
 			@Valid Long weekendDayCount,
 			@Valid LocalDate vacancyStart,

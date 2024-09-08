@@ -11,8 +11,8 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 
 import dev.fizlrock.services.PublicHolidayDateProvider;
-import dev.fizlrock.services.WeekendDayCalculator;
-import dev.fizlrock.services.WeekendDayCalculatorImpl;
+import dev.fizlrock.services.VacitionDayCalculator;
+import dev.fizlrock.services.VacationDayCalculatorImpl;
 
 /**
  * WeekendDayCalculatorTests
@@ -34,7 +34,7 @@ public class WeekendDayCalculatorTests {
     Mockito.when(dateProvider.getPublicHolidayDates())
         .thenReturn(Collections.emptyList());
 
-    WeekendDayCalculator calculator = new WeekendDayCalculatorImpl(dateProvider);
+    VacitionDayCalculator calculator = new VacationDayCalculatorImpl(dateProvider);
 
     int result = calculator.countWeekendDays(LocalDate.of(2024, 01, 01), LocalDate.of(2024, 01, 01));
     assertEquals(1, result);
@@ -47,7 +47,7 @@ public class WeekendDayCalculatorTests {
     Mockito.when(dateProvider.getPublicHolidayDates())
         .thenReturn(List.of(LocalDate.of(2024, 01, 01)));
     Mockito.when(dateProvider.hasInfoAboutPeriod(any(), any())).thenReturn(true);
-    WeekendDayCalculator calculator = new WeekendDayCalculatorImpl(dateProvider);
+    VacitionDayCalculator calculator = new VacationDayCalculatorImpl(dateProvider);
     int result = calculator.countWeekendDays(LocalDate.of(2024, 01, 01), LocalDate.of(2024, 01, 01));
     assertEquals(0, result);
   }
@@ -59,7 +59,7 @@ public class WeekendDayCalculatorTests {
     Mockito.when(dateProvider.getPublicHolidayDates())
         .thenReturn(Collections.emptyList());
 
-    WeekendDayCalculator calculator = new WeekendDayCalculatorImpl(dateProvider);
+    VacitionDayCalculator calculator = new VacationDayCalculatorImpl(dateProvider);
 
     var actual = calculator.countWeekendDays(LocalDate.of(2022, 02, 01), LocalDate.of(2022, 02, 05));
     assertEquals(5, actual);
@@ -73,7 +73,7 @@ public class WeekendDayCalculatorTests {
     Mockito.when(dateProvider.getPublicHolidayDates())
         .thenReturn(List.of(LocalDate.of(2022, 02, 01)));
 
-    WeekendDayCalculator calculator = new WeekendDayCalculatorImpl(dateProvider);
+    VacitionDayCalculator calculator = new VacationDayCalculatorImpl(dateProvider);
 
     var actual = calculator.countWeekendDays(LocalDate.of(2022, 02, 01), LocalDate.of(2022, 02, 05));
     assertEquals(4, actual);
@@ -86,7 +86,7 @@ public class WeekendDayCalculatorTests {
     Mockito.when(dateProvider.getPublicHolidayDates())
         .thenReturn(List.of(LocalDate.of(2022, 02, 05)));
 
-    WeekendDayCalculator calculator = new WeekendDayCalculatorImpl(dateProvider);
+    VacitionDayCalculator calculator = new VacationDayCalculatorImpl(dateProvider);
 
     var actual = calculator.countWeekendDays(LocalDate.of(2022, 02, 01), LocalDate.of(2022, 02, 05));
     assertEquals(4, actual);

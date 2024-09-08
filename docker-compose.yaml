@@ -1,0 +1,41 @@
+# version: '3.8'
+
+services:
+  suphoto-service:
+    image: suphoto
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8181:8181"
+    depends_on:
+      service-db:
+          condition: service_healthy
+    environment:
+      - SERVER_PORT= 8181
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/photodb
+
+
+  service-db:
+    image: postgres:14.7-alpine
+    environment:
+      POSTGRES_USER: suphoto-service
+      POSTGRES_PASSWORD: gracesecret
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 3s
+      timeout: 6s
+      retries: 5
+      start_period: 8s
+    
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./src/main/resources/db/create-database-script.sql:/docker-entrypoint-initdb.d/create_db.sql
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+
+volumes:
+  db-data:

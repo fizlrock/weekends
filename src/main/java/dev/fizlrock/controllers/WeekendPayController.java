@@ -1,6 +1,7 @@
 package dev.fizlrock.controllers;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -11,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.fizlrock.services.WeekendPayService;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 public class WeekendPayController implements CalculacteApi {
 
@@ -27,14 +26,12 @@ public class WeekendPayController implements CalculacteApi {
 			@Valid LocalDate vacancyStart,
 			@Valid LocalDate vacancyEnd) {
 
-		// не уверен, что тут стоит оставлять логику расчета
-		if (vacancyStart != null && vacancyEnd != null)
-			return ResponseEntity.ok(service.getPay(salary, vacancyStart, vacancyEnd));
-
-		log.warn("weekend count == null: {}", weekendDayCount==null);
-
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getHolidayPay'");
+		return ResponseEntity.ok(
+				service.getPay(
+						salary,
+						Optional.ofNullable(weekendDayCount),
+						Optional.ofNullable(vacancyStart),
+						Optional.ofNullable(vacancyEnd)));
 	}
 
 }

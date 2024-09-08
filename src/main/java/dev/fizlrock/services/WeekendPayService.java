@@ -1,6 +1,7 @@
 package dev.fizlrock.services;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * <p>
@@ -27,18 +28,21 @@ import java.time.LocalDate;
  */
 public interface WeekendPayService {
   /**
-   * @param averageMonthlyIncome   - средняя зарплата в месяц за 12 месяцев
-   * @param weekendDayCount - кол-во дней отпуска
+   * @param averageMonthlyIncome - средняя зарплата в месяц за 12 месяцев
+   * @param weekendDayCount      - кол-во дней отпуска
    * @return
    */
-  public double getPay(double averageMonthlyIncome, int weekendDayCount);
+  public double getPay(double averageMonthlyIncome, long weekendDayCount);
 
   /**
    * @param averageMountlyIncome - средняя зарплата за 12 месяцев
-   * @param weekendStart  - дата начала отпуска (включительно)
-   * @param weekendEnd    - дата конца отпуска (включительно)
+   * @param weekendStart         - дата начала отпуска (включительно)
+   * @param weekendEnd           - дата конца отпуска (включительно)
    * @return
    */
   public double getPay(double averageMountlyIncome, LocalDate weekendStart, LocalDate weekendEnd);
+
+  public double getPay(double averageMountlyIncome, Optional<Long> weekendDayCount, Optional<LocalDate> weekendStart,
+      Optional<LocalDate> weekendEnd);
 
 }
